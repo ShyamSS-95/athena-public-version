@@ -44,4 +44,9 @@ meshtest.dat
 .DS_Store
 
 # editor temp files
-*~
+*i~
+
+# Post Processed Data:
+*.mp4
+*.png
+*.log
