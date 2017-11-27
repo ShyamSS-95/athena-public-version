@@ -1,6 +1,6 @@
-import athena_read
-import pylab as pl
 import numpy as np
+import h5py
+import pylab as pl
 
 # Optimized plot parameters to make beautiful plots:
 pl.rcParams['figure.figsize']  = 12, 7.5
@@ -32,17 +32,22 @@ pl.rcParams['ytick.color']      = 'k'
 pl.rcParams['ytick.labelsize']  = 'medium'
 pl.rcParams['ytick.direction']  = 'in'
 
-data = athena_read.athdf('Implode.out2.00000.athdf')
+h5f = h5py.File('kh.out2.00000.athdf', 'r')
 
-x = data['x1f'][1:] + data['x1f'][:-1]
-y = data['x2f'][1:] + data['x2f'][:-1]
+x = -0.5 + (0.5 + np.arange(256)) * 1/256
+y = -0.5 + (0.5 + np.arange(256)) * 1/256
+
 x, y = np.meshgrid(x, y)
 
-for i in range(251):
+h5f.close()
+
+for i in range(1001):
     
-    data = athena_read.athdf('Implode.out2.{:05d}.athdf'.format(i))
-    rho = data['rho'].reshape(200, 200)
-    pl.contourf(x, y, rho, np.linspace(0.1, 1.5, 100))
+    h5f = h5py.File('kh.out2.{:05d}.athdf'.format(i), 'r')
+    rho = h5f['prim'][:][0].reshape(256, 256)
+    h5f.close()
+    
+    pl.contourf(x, y, rho, np.linspace(0.8, 2.2, 100))
     pl.axes().set_aspect('equal')
     pl.title('Time = ' +  str(i * 0.01))
     pl.xlabel(r'$x$')

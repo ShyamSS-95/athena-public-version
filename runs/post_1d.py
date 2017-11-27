@@ -32,13 +32,13 @@ pl.rcParams['ytick.color']      = 'k'
 pl.rcParams['ytick.labelsize']  = 'medium'
 pl.rcParams['ytick.direction']  = 'in'
 
-data = athena_read.athdf('Sod.out1.00000.athdf')
+data = athena_read.athdf('Stationary.out1.00000.athdf')
 
 x = data['x1f'][1:] + data['x1f'][:-1]
 
 for i in range(252):
     
-    data = athena_read.athdf('Sod.out1.{:05d}.athdf'.format(i))
+    data = athena_read.athdf('Stationary.out1.{:05d}.athdf'.format(i))
     
     n = data['rho'].flatten()
     p = data['press'].flatten()
@@ -48,18 +48,18 @@ for i in range(252):
 
     ax1 = fig.add_subplot(3, 1, 1)
     ax1.plot(x, n)
-    ax1.set_ylim([0, 1.1])
+    # ax1.set_ylim([0, 1.1])
     ax1.set_ylabel(r'$\rho$')
 
     ax2 = fig.add_subplot(3, 1, 2)
     ax2.plot(x, v)
     ax2.set_ylabel(r'$v_x$')
-    ax2.set_ylim([0, 1.1])
+    # ax2.set_ylim([0, 1.1])
 
     ax3 = fig.add_subplot(3, 1, 3)
     ax3.plot(x, p)
     ax3.set_ylabel(r'$p$')
-    ax3.set_ylim([0, 1.1])
+    # ax3.set_ylim([0, 1.1])
     ax3.set_xlabel('$x$')
 
     fig.suptitle('Time = ' + str(i * 0.001))

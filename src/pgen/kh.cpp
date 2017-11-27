@@ -55,7 +55,7 @@ void MeshBlock::ProblemGenerator(ParameterInput *pin)
       }
       // Pressure scaled to give a sound speed of 1 with gamma=1.4 
       if (NON_BAROTROPIC_EOS) {
-        phydro->u(IEN,k,j,i) = 2.5/gm1 + 0.5*(SQR(phydro->u(IM1,k,j,i)) +
+        phydro->u(IEN,k,j,i) = 0.8/gm1 + 0.5*(SQR(phydro->u(IM1,k,j,i)) +
           SQR(phydro->u(IM2,k,j,i)))/phydro->u(IDN,k,j,i);
       }
     }}}

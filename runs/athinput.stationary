@@ -47,7 +47,7 @@ ox3_bc      = periodic  # Outer-X3 boundary condition flag
 num_threads = 1         # maximum number of OMP threads
 
 <hydro>
-gamma           = 5.0/3.0   # gamma = C_p/C_v
+gamma           = 1.40   # gamma = C_p/C_v
 iso_sound_speed = 1.0       # isothermal sound speed
 
 <problem>
@@ -56,13 +56,13 @@ xshock        = 0.0     # position of initial interface
 compute_error = 0       # set value to one to compute L1 error
 
 dl = 1.0                # density on left
-pl = 2.0/3.0            # pressure
+pl = 1.0                # pressure
 ul = 1.0                # X-velocity
 vl = 0.0                # Y-velocity
 wl = 0.0                # Z-velocity
 
-dr = 0.92307692         # density on right
-pr = 0.5833333272863248 # pressure
-ur = 1.08333333         # X-velocity
+dr = 0.75         # density on right
+pr = 8/9          # pressure
+ur = 4/3          # X-velocity
 vr = 0.0                # Y-velocity
 wr = 0.0                # Z-velocity
